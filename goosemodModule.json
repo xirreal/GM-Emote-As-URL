@@ -2,7 +2,7 @@
   "main": "index.js",
   "version": "1.1.0",
 
-  "name": "Send emote as URL",
+  "name": "Send Emote as URL",
   "description": "Allows you to send emotes as URLs instead of using Nitro emotes.",
   "tags": ["quick-actions"],
   "authors": ["189079074054995969"]
