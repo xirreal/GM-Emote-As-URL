@@ -1,7 +1,6 @@
 import * as webpackModules from '@goosemod/webpack';
 import * as patcher from '@goosemod/patcher';
 import { createItem, removeItem } from '@goosemod/settings';
-import { version } from './goosemodModule.json';
 
 const settings = { emojisize: '64' };
 
@@ -44,13 +43,7 @@ export default {
                 };
             });
 
-            createItem('Emote as URL', [
-                version,
-
-                {
-                    type: 'header',
-                    text: 'Change the emoji size to your liking!',
-                },
+            createItem('Emote as URL', ['',
                 {
                     type: 'text-input',
                     text: 'Emoji Size',
