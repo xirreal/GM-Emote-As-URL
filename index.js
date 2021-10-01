@@ -33,7 +33,7 @@ export default {
             });
 
             Unpatch.emojiPickerModule = patcher.patch(emojiPickerModule, "useEmojiSelectHandler", (originalArgs, previousReturn) => {
-                const { onSelectEmoji, closePopout } = originalArgs;
+                const { onSelectEmoji, closePopout } = originalArgs[0];
                 return function (data, state) {
                   const emoji = data.emoji;
                   if (emoji != null && emoji.available) {
