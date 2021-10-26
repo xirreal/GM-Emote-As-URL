@@ -59,7 +59,7 @@ export default {
         },
 
         getSettings: () => [settings],
-        loadSettings: ([_settings]) => { [settings] = _settings },
+        loadSettings: ([_settings]) => { settings = _settings },
 
         onRemove: async () => {
             Object.values(Unpatch).forEach(unpatch => unpatch());
