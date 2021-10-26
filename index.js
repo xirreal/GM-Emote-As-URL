@@ -24,7 +24,7 @@ export default {
                     for (let emoji of previousReturn.invalidEmojis) {
                         previousReturn.content = previousReturn.content.replace(
                             `<${emoji.animated ? 'a' : ''}:${emoji.originalName || emoji.name}:${emoji.id}>`,
-                            `${emoji.url.split(".")[0]}&size=${settings.emojisize}&width=16`,
+                            `${emoji.url.split("?")[0]}?size=${settings.emojisize}&width=16`,
                         );
                     }
                     previousReturn.invalidEmojis = [];
