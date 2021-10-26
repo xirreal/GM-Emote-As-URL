@@ -24,7 +24,7 @@ export default {
                     for (let emoji of previousReturn.invalidEmojis) {
                         previousReturn.content = previousReturn.content.replace(
                             `<${emoji.animated ? 'a' : ''}:${emoji.originalName || emoji.name}:${emoji.id}>`,
-                            `${emoji.url.split("?")[0]}?size=${settings.emojisize}&width=16`,
+                            `${emoji.url.split('?')[0]}?size=${settings.emojisize}&width=16`,
                         );
                     }
                     previousReturn.invalidEmojis = [];
@@ -33,13 +33,16 @@ export default {
             });
 
             Unpatch.emojiPickerModule = patcher.patch(emojiPickerModule, "useEmojiSelectHandler", (originalArgs, previousReturn) => {
-                const { onSelectEmoji, closePopout } = originalArgs[0];
-                return function (data, state) {
-                  const emoji = data.emoji;
-                  if (emoji != null && emoji.available) {
-                    onSelectEmoji(emoji, state.isFinalSelection);
-                    if (state.isFinalSelection) closePopout();
-                  }
+                const {
+                    onSelectEmoji,
+                    closePopout
+                } = originalArgs[0];
+                return function(data, state) {
+                    const emoji = data.emoji;
+                    if (emoji != null && emoji.available) {
+                        onSelectEmoji(emoji, state.isFinalSelection);
+                        if (state.isFinalSelection) closePopout();
+                    }
                 };
             });
 
@@ -53,13 +56,14 @@ export default {
                     },
                 },
             ]);
-    },
+        },
 
-    getSettings: () => [settings],
+        getSettings: () => [settings],
+        loadSettings: ([_settings]) => { settings = _settings },
 
-    onRemove: async () => {
-        Object.values(Unpatch).forEach(unpatch => unpatch());
-        removeItem('Emote as URL');
+        onRemove: async () => {
+            Object.values(Unpatch).forEach(unpatch => unpatch());
+            removeItem('Emote as URL');
+        }
     },
-  },
 };
