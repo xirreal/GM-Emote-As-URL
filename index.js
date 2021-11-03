@@ -2,7 +2,7 @@ import * as webpackModules from '@goosemod/webpack';
 import * as patcher from '@goosemod/patcher';
 import { createItem, removeItem } from '@goosemod/settings';
 
-const settings = { emojisize: '64' };
+let settings = { emojisize: '64' };
 
 const emojisModule = webpackModules.findByProps('getDisambiguatedEmojiContext', 'search');
 const messageEmojiParserModule = webpackModules.findByProps('parse', 'parsePreprocessor', 'unparse');
