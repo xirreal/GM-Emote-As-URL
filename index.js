@@ -9,6 +9,7 @@ const messageEmojiParserModule = webpackModules.findByProps('parse', 'parsePrepr
 const emojiPickerModule = webpackModules.findByProps('useEmojiSelectHandler');
 
 const Unpatch = {};
+let style;
 
 export default {
     goosemodHandlers: {
@@ -37,7 +38,7 @@ export default {
                     onSelectEmoji,
                     closePopout
                 } = originalArgs[0];
-                return function(data, state) {
+                return function (data, state) {
                     const emoji = data.emoji;
                     if (emoji != null && emoji.available) {
                         onSelectEmoji(emoji, state.isFinalSelection);
@@ -56,6 +57,14 @@ export default {
                     },
                 },
             ]);
+
+            style = document.createElement("style");
+            document.head.appendChild(style);
+            style.appendChild(document.createTextNode(`
+            .emojiItemDisabled-1FvFuF {
+                filter: none !important;
+                -webkit-filter: none !important;
+            }`));
         },
 
         getSettings: () => [settings],
@@ -64,6 +73,7 @@ export default {
         onRemove: async () => {
             Object.values(Unpatch).forEach(unpatch => unpatch());
             removeItem('Emote as URL');
+            style.remove();
         }
     },
 };
